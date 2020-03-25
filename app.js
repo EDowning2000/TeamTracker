@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
-const mysql = require('mysql');
-const consoleTable = require('console.table');
+// const mysql = require('mysql');
+// const consoleTable = require('console.table');
 
 function initialPrompt(){
 inquirer.prompt({
@@ -15,7 +15,9 @@ inquirer.prompt({
     'Remove Employee',
     'Update Employee Role',
     'Update Employee Manager',
-    'View all Roles'
+    'View all Roles',
+    'Exit'
+
   ]})
   .then(data=>{
     const choice = data.initialQuestion
@@ -55,3 +57,5 @@ function removeEmployee(){}
 function updateEmployeeRole(){}
 function updateEmployeeManager(){}
 function viewAllRoles(){}
+
+initialPrompt()
