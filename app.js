@@ -1,12 +1,12 @@
 const inquirer = require('inquirer');
 const mysql = require('mysql');
-// const consoleTable = require('console.table');
+const consoleTable = require('console.table');
 
 const connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "Emerson150",
+  password: "eb6qla2x",
   database: "employeeDB"
 });
 
@@ -17,43 +17,39 @@ inquirer.prompt({
   message: "What would you like to do?",
   name:"initialQuestion", 
   choices : [
-    'View all Employees',
-    'View all Employees by Department',
-    'View all Employees by Manager',
-    'Add Employee',
-    'Remove Employee',
+    'View Departments',
+    'View Roles',
+    'View Employees',
+    'Add Department',
+    'Add Roles',
+    'Add Employees',
     'Update Employee Role',
-    'Update Employee Deparment',
-    'View all Roles',
     'Exit'
 
   ]})
   .then(data=>{
     const choice = data.initialQuestion
     switch(choice){
-      case 'View all Employees':
-        viewAllEmployees();
+      case 'View Departments':
+        viewDepartments();
           break;
-      case 'View all Employees by Department':
-        viewAllEmployeesDept();
+      case 'View Roles':
+        viewRoles();
           break;
-      case 'View all Employees by Manager':
-        viewAllEmployeesManager();
+      case 'View Employees':
+        viewEmployees();
           break;
-      case 'Add Employee':
-        addEmployee();
+      case 'Add Departments':
+        addDepartments();
           break;
-      case 'Remove Employee':
-          removeEmployee();
+      case 'Add Roles':
+          addRoles();
             break;
-      case 'Update Employee Department':
-          updateEmployeeDepartment();
+      case 'Add Employees':
+          addEmployees();
             break;
-      case 'Update Employee Manager':
-        updateEmployeeManager();
-          break;
-      case 'View all Roles':
-        viewAllRoles();
+      case 'Update Employee Role':
+        updateEmployeeRole();
           break;
       case 'Exit':
         exit();
@@ -62,17 +58,26 @@ inquirer.prompt({
   })
 }
 
-function viewAllEmployees(){
 
+function viewDepartments(){
+  var query = connection.query(
+    'SELECT * FROM department',function(err, res){
+      if (err) throw err;
+        console.table(res)
+          console.log('Here are the departments')
+    }
+  )
+  console.log(query)
+  console.log(query.sql)
 }
 
 
-function viewAllEmployeesManager(){}
-function addEmployee(){}
-function removeEmployee(){}
-function updateEmployeeDepartment(){}
-function updateEmployeeManager(){}
-function viewAllRoles(){}
+function viewRoles(){}
+function viewEmployees(){}
+function addDepartments(){}
+function addRoles(){}
+function addEmployees(){}
+function updateEmployeeRole(){}
 function exit(){}
 
-initialPrompt()
+viewDepartments()
