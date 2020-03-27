@@ -1,6 +1,15 @@
 const inquirer = require('inquirer');
-// const mysql = require('mysql');
+const mysql = require('mysql');
 // const consoleTable = require('console.table');
+
+const connection = mysql.createConnection({
+  host: "localhost",
+  port: 3306,
+  user: "root",
+  password: "Emerson150",
+  database: "employeeDB"
+});
+
 
 function initialPrompt(){
 inquirer.prompt({
@@ -14,7 +23,7 @@ inquirer.prompt({
     'Add Employee',
     'Remove Employee',
     'Update Employee Role',
-    'Update Employee Manager',
+    'Update Employee Deparment',
     'View all Roles',
     'Exit'
 
@@ -37,8 +46,8 @@ inquirer.prompt({
       case 'Remove Employee':
           removeEmployee();
             break;
-      case 'Update Employee Role':
-          updateEmployeeRole();
+      case 'Update Employee Department':
+          updateEmployeeDepartment();
             break;
       case 'Update Employee Manager':
         updateEmployeeManager();
@@ -46,16 +55,24 @@ inquirer.prompt({
       case 'View all Roles':
         viewAllRoles();
           break;
+      case 'Exit':
+        exit();
+          break;
     }
   })
 }
 
-function viewAllEmployees(){}
+function viewAllEmployees(){
+
+}
+
+
 function viewAllEmployeesManager(){}
 function addEmployee(){}
 function removeEmployee(){}
-function updateEmployeeRole(){}
+function updateEmployeeDepartment(){}
 function updateEmployeeManager(){}
 function viewAllRoles(){}
+function exit(){}
 
 initialPrompt()
