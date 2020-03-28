@@ -111,9 +111,8 @@ function addDepartments(){
             console.table(res)
               console.log("Department Added")
                 initialPrompt();
-        }
-      )
-
+      }
+    )
   })
 }
 
@@ -123,7 +122,14 @@ function addRoles(){
     message: 'What is the role you would like to add?',
     name: "addRolePrompt"
   }).then(data=>{
-
+    var query = connection.query(
+      'INSERT INTO role ?', data, function(err, res){
+        if (err) throw err;
+          console.table(res);
+            console.log('Role added');
+              initialPrompt();
+      }
+    )
   })
 }
 
@@ -133,7 +139,14 @@ function addEmployees(){
     message: 'What is the first and last name of the employee you would like to add?', 
     name: 'addEmployeesPrompt'
   }).then(data=>{
-
+    var query = connection.query(
+      'INSERT INTO employee ?', data, function(err,res){
+        if (err) throw err;
+          console.table(res);
+            console.log('Employee Added');
+              initialPrompt();
+      }
+    )
   })
 }
 
