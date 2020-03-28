@@ -75,7 +75,7 @@ function viewDepartments(){
 
 function viewRoles(){
   var query =connection.query(
-    'SELECT * FROM roles', function(err, res){
+    'SELECT * FROM role', function(err, res){
       if (err) throw err;
         console.table(res);
           console.log("List of all Roles");
@@ -86,7 +86,7 @@ function viewRoles(){
   // console.log(query.sql)
 }
 function viewEmployees(){
-  var query = query.connection(
+  var query = connection.query(
     'SELECT * FROM employee', function(err, res){
       if (err) throw err; 
         console.table(res);
@@ -103,7 +103,16 @@ function addDepartments(){
     type: "prompt",
     message: "What is the name of the Department you would like to add?",
     name: "addDepartmentPrompt"
-  }).then(data=>{
+  })
+  .then(data=>{
+      var query = connection.query(
+        'INSERT INTO department ?', data, function(err, res){
+          if (err) throw err;
+            console.table(res)
+              console.log("Department Added")
+                initialPrompt();
+        }
+      )
 
   })
 }
