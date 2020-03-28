@@ -6,7 +6,7 @@ const connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "eb6qla2x",
+  password: "Emerson150",
   database: "employeeDB"
 });
 
@@ -64,20 +64,77 @@ function viewDepartments(){
     'SELECT * FROM department',function(err, res){
       if (err) throw err;
         console.table(res)
-          console.log('Here are the departments')
+          console.log('List of all departments')
+            initialPrompt()
     }
   )
-  console.log(query)
-  console.log(query.sql)
+  // console.log(query)
+  // console.log(query.sql)
 }
 
 
-function viewRoles(){}
-function viewEmployees(){}
-function addDepartments(){}
-function addRoles(){}
-function addEmployees(){}
-function updateEmployeeRole(){}
+function viewRoles(){
+  var query =connection.query(
+    'SELECT * FROM roles', function(err, res){
+      if (err) throw err;
+        console.table(res);
+          console.log("List of all Roles");
+            initialPrompt()
+    }
+  )
+  // console.log(query)
+  // console.log(query.sql)
+}
+function viewEmployees(){
+  var query = query.connection(
+    'SELECT * FROM employee', function(err, res){
+      if (err) throw err; 
+        console.table(res);
+          console.log("List of all Employees")
+            initialPrompt()
+    }
+  )
+  // console.log(query)
+  // console.log(query.sql)
+}
+
+function addDepartments(){
+  inquirer.prompt({
+    type: "prompt",
+    message: "What is the name of the Department you would like to add?",
+    name: "addDepartmentPrompt"
+  }).then(data=>{
+
+  })
+}
+
+function addRoles(){
+  inquirer.prompt({
+    type: 'prompt',
+    message: 'What is the role you would like to add?',
+    name: "addRolePrompt"
+  }).then(data=>{
+
+  })
+}
+
+function addEmployees(){
+  inquirer.prompt({
+    type: 'prompt',
+    message: 'What is the first and last name of the employee you would like to add?', 
+    name: 'addEmployeesPrompt'
+  }).then(data=>{
+
+  })
+}
+
+function updateEmployeeRole(){
+  inquirer.prompt({
+    type: 'prompt',
+    message: 'What is the first and last name of the employee whos role you would like to update?',
+    name: 'updateEmployeeRolePrompt'
+  })
+}
 function exit(){}
 
-viewDepartments()
+initialPrompt()
