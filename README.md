@@ -5,13 +5,6 @@
   # Description
   This application allows you to pull, add, and update team members, departments, and roles from an sql database right from your console.
 
-  # Table of Contents
-  *[Installation] (#installation)
-  *[Tests] (#tests)
-  *[Usage] (#usage)
-  *[Contributing] (#contributing)
-  *[License] (#license)
-  *[Questions] (#questions)
 
  # Installation
  Run This Snippet to Run Dependencies 
