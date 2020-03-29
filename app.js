@@ -164,7 +164,50 @@ function addEmployees(){
   })
 }
 
+function updateEmployeeRole() {
+  let employees = [
+      'Michael Scott',
+      'Dwight Schrute',
+      'Jim Halpert',
+      'Stanley Hudson',
+      'Angela Schrute',
+      'Kevin Malone',
+      'Emerson Downing'
+  ];
 
+  let roles = [
+      'Regional Manager',
+      'Assistant to Regional Manager',
+      'Salesman',
+      'Accountant',
+      'test',
+  ];
+
+  inquirer.prompt([
+      {
+          message: "Which Employee do you wish to update?",
+          type: 'list',
+          name: 'employeeUpdatePrompt',
+          choices: employees
+      },
+      {
+          message: "What is his/her new role?",
+          type: 'list',
+          name: 'employeeRoleUpdate',
+          choices: roles
+      }
+  ])
+    .then(answers => {
+        connection.query(`
+        UPDATE employeeDB.employee 
+        SET role_id = '${roles.indexOf(answers.role) + 1}' WHERE (id = '${employees.indexOf(answers.employee) + 1}');`,
+            (err, result) => {
+                if (err) throw err;
+                console.log(result);
+            })
+    })
+    connection.end()
+}
 
 
 function exit(){
