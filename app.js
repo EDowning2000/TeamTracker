@@ -72,7 +72,6 @@ function viewDepartments(){
   // console.log(query.sql)
 }
 
-
 function viewRoles(){
   var query =connection.query(
     'SELECT * FROM role', function(err, res){
@@ -85,6 +84,7 @@ function viewRoles(){
   // console.log(query)
   // console.log(query.sql)
 }
+
 function viewEmployees(){
   var query = connection.query(
     'SELECT * FROM employee', function(err, res){
@@ -97,8 +97,6 @@ function viewEmployees(){
   // console.log(query)
   // console.log(query.sql)
 }
-
-
 
 function addDepartments(){
   inquirer.prompt({
@@ -116,6 +114,31 @@ function addDepartments(){
   })
 }
 
+function addRoles(){
+  inquirer.prompt([{
+    type: 'input',
+    message: 'What is the title of the role?',
+    name: 'roleTitlePrompt'
+  },{
+  type: 'input',
+    message: 'What is the salary of the role?',
+    name: 'roleSalaryPrompt'
+  },{
+    type: 'input',
+    message:'What is the department ID',
+    name: 'roleIDPrompt'
+  }])
+  .then(data=>{
+    connection.query(
+      'INSERT INTO role SET ?', {title: data.roleTitlePrompt, salary: data.roleSalaryPrompt, department_id: data.roleIDPrompt}, function(err,res){
+        if(err) throw err;
+          console.log(res)
+      }
+    )
+    connection.end()
+  })
+
+}
   
 
 
