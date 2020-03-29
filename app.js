@@ -137,9 +137,32 @@ function addRoles(){
     )
     connection.end()
   })
-
 }
-  
+
+function addEmployees(){
+  inquirer.prompt([{
+    type: 'input',
+    message: 'What is the first name of the employee you would like to add?',
+    name: 'firstNamePrompt'
+  },{
+    type: 'input',
+    message: 'What is the last name of the employee you would like to add',
+    name: 'secondNamePrompt'
+  },{
+    type: 'input',
+    message: 'What is the employee you would like to adds role ID?',
+    name: 'employeeRoleIDPrompt'
+  }])
+  .then(data=>{
+    connection.query(
+      'INSERT INTO employee SET ?', {first_name: data.firstNamePrompt, last_name: data.secondNamePrompt, role_id: data.employeeRoleIDPrompt}, function (err, res){
+        if(err) throw err;
+          console.log(res)
+      }
+    )
+    connection.end()
+  })
+}
 
 
 
