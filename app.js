@@ -20,7 +20,7 @@ inquirer.prompt({
     'View Departments',
     'View Roles',
     'View Employees',
-    'Add Department',
+    'Add Departments',
     'Add Roles',
     'Add Employees',
     'Update Employee Role',
@@ -98,65 +98,32 @@ function viewEmployees(){
   // console.log(query.sql)
 }
 
+
+
 function addDepartments(){
   inquirer.prompt({
-    type: "prompt",
-    message: "What is the name of the Department you would like to add?",
-    name: "addDepartmentPrompt"
-  })
-  .then(data=>{
-      var query = connection.query(
-        'INSERT INTO department ?', data, function(err, res){
-          if (err) throw err;
-            console.table(res)
-              console.log("Department Added")
-                initialPrompt();
+    type: 'input',
+    message: 'What is the name of the department you would like to add?',
+    name: 'addDeptPrompt'
+  }) .then(data=>{
+    connection.query(
+      'INSERT INTO department SET ?', {name : data.addDeptPrompt},       function  (err, res){
+        if(err) throw err;
+          console.log(res)
       }
     )
+    connection.end()
   })
 }
 
-function addRoles(){
-  inquirer.prompt({
-    type: 'prompt',
-    message: 'What is the role you would like to add?',
-    name: "addRolePrompt"
-  }).then(data=>{
-    var query = connection.query(
-      'INSERT INTO role ?', data, function(err, res){
-        if (err) throw err;
-          console.table(res);
-            console.log('Role added');
-              initialPrompt();
-      }
-    )
-  })
+  
+
+
+
+
+function exit(){
+  connection.end();
 }
 
-function addEmployees(){
-  inquirer.prompt({
-    type: 'prompt',
-    message: 'What is the first and last name of the employee you would like to add?', 
-    name: 'addEmployeesPrompt'
-  }).then(data=>{
-    var query = connection.query(
-      'INSERT INTO employee ?', data, function(err,res){
-        if (err) throw err;
-          console.table(res);
-            console.log('Employee Added');
-              initialPrompt();
-      }
-    )
-  })
-}
-
-function updateEmployeeRole(){
-  inquirer.prompt({
-    type: 'prompt',
-    message: 'What is the first and last name of the employee whos role you would like to update?',
-    name: 'updateEmployeeRolePrompt'
-  })
-}
-function exit(){}
 
 initialPrompt()
