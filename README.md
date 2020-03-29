@@ -1,58 +1,43 @@
 # TeamTracker
 
+  ![](https://img.shields.io/badge/License-MIT-important)
 
+  # Description
+  This application allows you to pull, add, and update team members, departments, and roles from an sql database right from your console.
 
+  # Table of Contents
+  *[Installation] (#installation)
+  *[Tests] (#tests)
+  *[Usage] (#usage)
+  *[Contributing] (#contributing)
+  *[License] (#license)
+  *[Questions] (#questions)
 
+ # Installation
+ Run This Snippet to Run Dependencies 
 
-function addEmployees(){
-  inquirer.prompt({
-    type: 'prompt',
-    message: 'What is the first and last name of the employee you would like to add?', 
-    name: 'addEmployeesPrompt'
-  }).then(data=>{
-    var query = connection.query(
-      'INSERT INTO employee ?', {name: data.addEmployeesPrompt}, function(err,res){
-        if (err) throw err;
-          console.table(res);
-            console.log('Employee Added');
-              initialPrompt();
-      }
-    )
-  })
-}
+  ```
+  npm i  
+  ```
 
-function updateEmployeeRole(){
-  inquirer.prompt({
-    type: 'prompt',
-    message: 'What is the first and last name of the employee whos role you would like to update?',
-    name: 'updateEmployeeRolePrompt'
-  })
-}
+ # Tests
+ Run the Tests with This Snippet
+ ```
+ no testing 
+ ```
 
+ # Usage
+ How to Use This Program <br />
+ its all done within the console 
 
+ # Contributing
+ How Users can Contribute <br />
+ adding more columns to the sql files in case they need different parameters 
 
-function addRoles(){
-  inquirer.prompt([{
-    type: 'prompt',
-    message: 'What is the role you would like to add?',
-    name: "addRolePrompt"},
-    {
-      type: 'prompt',
-      message: 'What is the roles yearly salary?',
-      name: "yearlySalaryPrompt"
-    }])
-      .then((data) => {
-        connection.query(`
-             INSERT INTO role SET ?`,
-            {
-                title: answers.newRole,
-                salary: answers.salary,
-            },
-            (err, result) => {
-                if (err) throw err;
-                  
+ # Liscence <br />
+ MIT
 
-            })
-    })
-    viewRoles();
-}
+# Questions
+If You Have any Questions, You can Reach Me at My [Email]null
+
+<img src="https://avatars3.githubusercontent.com/u/57017788?v=4" alt="Github Avatar" style="border-radius:50px" width="100px"/>
